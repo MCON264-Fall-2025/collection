@@ -16,7 +16,9 @@
 
 package edu.touro.mcon264.apps.collections;
 
-public class SortedArrayCollection<T> implements CollectionInterface<T>  
+import java.util.Iterator;
+
+public class SortedArrayCollection<T> implements CollectionInterface<T>
 {
   protected final int DEFCAP = 100; // default capacity
   protected int origCap;            // original capacity
@@ -164,4 +166,9 @@ public class SortedArrayCollection<T> implements CollectionInterface<T>
   {
     return false;
   }
+
+    @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
 }

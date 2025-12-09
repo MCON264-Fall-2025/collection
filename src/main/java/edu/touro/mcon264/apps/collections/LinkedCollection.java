@@ -10,7 +10,10 @@ package edu.touro.mcon264.apps.collections;
 
 import edu.touro.mcon264.support.LLNode;
 
-public class LinkedCollection<T> implements CollectionInterface<T>  
+import java.util.Iterator;
+
+
+public abstract class LinkedCollection<T> implements CollectionInterface<T>
 {
   protected LLNode<T> head;       // head of the linked list
   protected int numElements = 0;  // number of elements in this collection
@@ -113,5 +116,48 @@ public class LinkedCollection<T> implements CollectionInterface<T>
   // Returns true if this collection is full; otherwise, returns false.
   {
     return false;  // Linked implementation is never full
-  }  
+  }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            LLNode<T> current = head;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                T element = current.getInfo();
+                current = current.getLink();
+                return element;
+            }
+
+            @Override
+            public void remove() {
+                boolean canRemove = false;
+                if (!canRemove) {
+                    throw new IllegalStateException();
+                }
+
+                // Delete node after previous
+                if (previous == head) {
+                    head = head.getLink();
+                } else {
+                    location = head;
+                    while (location.getLink() != previous) {
+                        location = location.getLink();
+                    }
+                    location.setLink(previous.getLink());
+                }
+
+                numElements--;
+                canRemove = false;
+            }
+        };
+    }
+
+    public abstract int removeAll(T target);
 }
