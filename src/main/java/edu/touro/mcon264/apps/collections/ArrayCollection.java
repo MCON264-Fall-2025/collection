@@ -10,7 +10,9 @@
 //---------------------------------------------------------------------------
 package edu.touro.mcon264.apps.collections;
 
-public class ArrayCollection<T> implements CollectionInterface<T>  
+import java.util.Iterator;
+
+public class ArrayCollection<T> implements CollectionInterface<T>
 {
   protected final int DEFCAP = 100; // default capacity
   protected T[] elements;           // array to hold collection�s elements
@@ -115,4 +117,9 @@ public class ArrayCollection<T> implements CollectionInterface<T>
   {
     return numElements;
   }
+
+    @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
 }
